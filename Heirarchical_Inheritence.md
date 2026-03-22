@@ -1,70 +1,93 @@
-# Multilevel Inheritance Example in Python
+# Hierarchical Inheritance in Python
 
-This Python project demonstrates the concept of **Multilevel Inheritance** to collect and display the **name**, **age**, and **location** of a person.
+This Python project demonstrates **Hierarchical Inheritance** using a base class `Details` and two derived classes `Employee` and `Patient`. The program collects and displays details for both employees and patients.
 
 ## 🎯 Aim
 
-To write a Python program that uses multilevel inheritance to get and display a person’s name, age, and location.
+To write a Python program that uses **Hierarchical Inheritance** to input and display **Employee** and **Patient** details.
+
+## 📘 Description
+
+- **Base Class:** `Details`
+  - Stores common attributes: `name`, `age`
+  - Provides methods: `getName()`, `getAge()`
+
+- **Derived Class 1:** `Employee`
+  - Inherits from `Details`
+  - Adds: `employee_id`, `department`
+  - Method: `getEmployeeDetails()`
+
+- **Derived Class 2:** `Patient`
+  - Inherits from `Details`
+  - Adds: `patient_id`, `disease`
+  - Method: `getPatientDetails()`
 
 ## 🧠 Algorithm
 
-1. **Parent Class**  
-   - `__init__(name)` initializes the `name` attribute.  
-   - `getName()` returns the `name`.
-
-2. **Child Class (inherits Parent)**  
-   - `__init__(name, age)` initializes `name` using `super()` and adds `age`.  
-   - `getAge()` returns the `age`.
-
-3. **Grandchild Class (inherits Child)**  
-   - `__init__(name, age, location)` initializes `name` and `age` using `super()` and adds `location`.  
-   - `getLocation()` returns the `location`.
-
-4. **Input & Output**  
-   - Take user input for name, age, and location.  
-   - Create an instance of `Grandchild`.  
-   - Print all details using class methods.
+1. Create base class `Details` with common attributes.
+2. Create `Employee` class extending `Details`, adding employee-specific data.
+3. Create `Patient` class extending `Details`, adding patient-specific data.
+4. Get user input for employee and patient data.
+5. Display collected information using class methods.
 
 ## Program
-```
-class Parent:
-    def __init__(self, name):
+class Details:
+    def __init__(self, name, age):
         self.name = name
+        self.age = age
 
     def getName(self):
         return self.name
-
-
-class Child(Parent):
-    def __init__(self, name, age):
-        super().__init__(name)
-        self.age = age
 
     def getAge(self):
         return self.age
 
 
-class Grandchild(Child):
-    def __init__(self, name, age, location):
+class Employee(Details):
+    def __init__(self, name, age, employee_id, department):
         super().__init__(name, age)
-        self.location = location
+        self.employee_id = employee_id
+        self.department = department
 
-    def getLocation(self):
-        return self.location
+    def getEmployeeDetails(self):
+        print("Name:", self.getName())
+        print("Age:", self.getAge())
+        print("Employee ID:", self.employee_id)
+        print("Department:", self.department)
 
 
-name = input("Enter name: ")
-age = int(input("Enter age: "))
-location = input("Enter location: ")
+class Patient(Details):
+    def __init__(self, name, age, patient_id, disease):
+        super().__init__(name, age)
+        self.patient_id = patient_id
+        self.disease = disease
 
-obj = Grandchild(name, age, location)
+    def getPatientDetails(self):
+        print("Name:", self.getName())
+        print("Age:", self.getAge())
+        print("Patient ID:", self.patient_id)
+        print("Disease:", self.disease)
 
-print("Name:", obj.getName())
-print("Age:", obj.getAge())
-print("Location:", obj.getLocation())
-```
+
+ename = input("Enter employee name: ")
+eage = int(input("Enter employee age: "))
+eid = input("Enter employee ID: ")
+edept = input("Enter department: ")
+
+pname = input("Enter patient name: ")
+page = int(input("Enter patient age: "))
+pid = input("Enter patient ID: ")
+pdisease = input("Enter disease: ")
+
+emp = Employee(ename, eage, eid, edept)
+pat = Patient(pname, page, pid, pdisease)
+
+print("\nEmployee Details")
+emp.getEmployeeDetails()
+
+print("\nPatient Details")
+pat.getPatientDetails()
 ## Sample Output
-
-<img width="1121" height="881" alt="image" src="https://github.com/user-attachments/assets/b7e0163e-b55a-4b16-84ef-f7bdad5f499d" />
+<img width="1168" height="909" alt="image" src="https://github.com/user-attachments/assets/26c07040-e4ce-48e6-b3d4-51fbfe466cbe" />
 #result
-Hence the program is written and executed successfully
+Hence the program is written and executed successfully.
